@@ -8,8 +8,6 @@ export default function App() {
     <SafeAreaView>
       <ScrollView>
         <View style={styles.container}>
-
-        
           <CardImage />
         </View>
       </ScrollView>
