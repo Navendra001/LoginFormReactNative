@@ -1,88 +1,122 @@
-import {React, useState} from 'react';
+import React from 'react';
 import {
   StyleSheet,
   Text,
   View,
   TextInput,
   Button,
+  SafeAreaView,
   ScrollView,
-  Alert,
 } from 'react-native';
 
+import {Formik} from 'formik';
+import * as yup from 'yup';
+
 const SignIn = () => {
-  const [email, setEmail] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [empCode, setEmpCode] = useState(0);
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const signInValidation = yup.object().shape({
+    email: yup
+      .string()
+      .email('Please Enter a valid Email')
+      .required("Field can't be empty"),
+
+    password: yup
+      .string()
+      .min(5, ({min}) => `Password must be at least ${min} characters`)
+      .required('Password is required'),
+    confirmPassword: yup
+      .string()
+      .min(5, ({min}) => `Password must be at least ${min} characters`)
+      .required('Password is required'),
+    // empCode,
+    // firstName,
+    // lastName,
+  });
   return (
-    <ScrollView>
-      <View style={styles.container1}>
-        <Text style={styles.textStyle1}>Log In</Text>
-        <Text style={styles.textStyle2}>Employee Email</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter Email"
-          keyboardType="email-address"
-          onChangeText={value => setEmail(value)}
-        />
-        <Text style={styles.textStyle2}>Employee FirstName</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter Firstname"
-          onChangeText={value => setFirstName(value)}
-        />
-        <Text style={styles.textStyle2}>Employee Lastname</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter Lastname"
-          onChangeText={value => setLastName(value)}
-        />
-        <Text style={styles.textStyle2}>Employee Code</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter Employee Code"
-          keyboardType="number-pad"
-          onChangeText={value => setEmpCode(value)}
-        />
-        <Text style={styles.textStyle2}>Password</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter Password"
-          onChangeText={value => setPassword(value)}
-        />
-        <Text style={styles.textStyle2}>Confirm Password</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Confirm Password"
-          onChangeText={value => setConfirmPassword(value)}
-        />
-        <View style={styles.buttonStyle}>
-          <Button
-            color="red"
-            onPress={() => {
-              console.log(
-                'email :',
-                email,
-                '\n firstName :',
-                firstName,
-                '\n lastName :',
-                lastName,
-                '\n empCode :',
-                empCode,
-                '\n password :',
-                password,
-                '\n confirmPassword :',
-                confirmPassword,
-              );
-              Alert.alert('Form Submited Successfully 👍');
-            }}
-            title="Submit"
-          />
+    <SafeAreaView>
+      <ScrollView>
+        <View style={styles.container1}>
+          <Text style={styles.textStyle1}>Sign In</Text>
+          <Formik
+            initialValues={{
+              email: '',
+              firstName: '',
+              lastName: '',
+              empCode: null,
+              password: '',
+              confirmPassword: '',
+            }}>
+            {({
+              handleChange,
+              handleBlur,
+              handleSubmit,
+              values,
+              errors,
+              touched,
+              isValid,
+            }) => (
+              <>
+                <Text style={styles.textStyle2}>Employee Email</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Enter Email"
+                  keyboardType="email-address"
+                  value={values.email}
+                />
+                <Text style={styles.textStyle2}>Employee FirstName</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Enter Firstname"
+                  onChangeText={handleChange('firstName')}
+                  onBlur={handleBlur('firstName')}
+                  value={values.firstName}
+                />
+                <Text style={styles.textStyle2}>Employee Lastname</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Enter Lastname"
+                  onChangeText={handleChange('lastName')}
+                  onBlur={handleBlur('lastName')}
+                  value={values.lastName}
+                />
+                <Text style={styles.textStyle2}>Employee Code</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Enter Employee Code"
+                  keyboardType="number-pad"
+                  onChangeText={handleChange('empCode')}
+                  onBlur={handleBlur('empCode')}
+                  value={values.empCode}
+                />
+                <Text style={styles.textStyle2}>Password</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Enter Password"
+                  onChangeText={handleChange('password')}
+                  onBlur={handleBlur('password')}
+                  value={values.password}
+                />
+                <Text style={styles.textStyle2}>Confirm Password</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Confirm Password"
+                  onChangeText={handleChange('confirmPassword')}
+                  onBlur={handleBlur('confirmPassword')}
+                  value={values.confirmPassword}
+                />
+                <View style={styles.buttonStyle}>
+                  <Button
+                    color="red"
+                    onPress={handleSubmit}
+                    title="Submit"
+                    disabled={!isValid}
+                  />
+                </View>
+              </>
+            )}
+          </Formik>
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 

@@ -1,7 +1,8 @@
 import * as React from 'react';
 import {StyleSheet, Text, View, Image, Button, Linking} from 'react-native';
 
-const CardImage = () => {
+const CardImage = ({navigation, route}) => {
+  const {email} = route.params;
   return (
     <View>
       <View style={styles.container2}>
@@ -15,6 +16,7 @@ const CardImage = () => {
       <View style={styles.container1}>
         <Image
           // width="100%"
+          // eslint-disable-next-line react-native/no-inline-styles
           style={{width: '100%'}}
           source={require('../../assets/NetflixSampleImage.jpg')}
         />
@@ -29,6 +31,7 @@ const CardImage = () => {
           July 2019, and May and July 2022, respectively. In February 2022, the
           series was renewed for a fifth and final season.
         </Text>
+        <Text>{email}</Text>
         <Button
           color="red"
           onPress={() => {
