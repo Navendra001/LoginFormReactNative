@@ -13,7 +13,7 @@ export default function App() {
   return (
     <>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="SignIn">
+        <Stack.Navigator initialRouteName="LogIn">
           <Stack.Screen name="Card" component={CardImage} />
           <Stack.Screen
             name="LogIn"

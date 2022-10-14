@@ -29,8 +29,9 @@ const LogInForm = ({navigation}) => {
         <Formik
           validationSchema={loginValidation}
           initialValues={{email: '', password: ''}}
-          onSubmit={values => {
+          onSubmit={(values, {resetForm}) => {
             console.log(values);
+            resetForm({values: ''});
             navigation.navigate('Card', values);
           }}>
           {({
