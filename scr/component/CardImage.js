@@ -1,7 +1,8 @@
 import * as React from 'react';
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, Text, View, Image, Button, Linking} from 'react-native';
 
-const CardImage = () => {
+const CardImage = ({navigation, route}) => {
+  const {email} = route.params;
   return (
     <View>
       <View style={styles.container2}>
@@ -14,10 +15,32 @@ const CardImage = () => {
 
       <View style={styles.container1}>
         <Image
+          // width="100%"
+          // eslint-disable-next-line react-native/no-inline-styles
           style={{width: '100%'}}
           source={require('../../assets/NetflixSampleImage.jpg')}
         />
         <Text style={styles.textStyle2}> STANGES THINGS </Text>
+        <Text style={styles.textStyle3}>
+          Stranger Things is an American science fiction horror drama television
+          series created by the Duffer Brothers, who also serve as showrunners
+          and are executive producers along with Shawn Levy and Dan Cohen.
+          Produced by Monkey Massacre Productions and Levy's 21 Laps
+          Entertainment, the first season was released on Netflix on July 15,
+          2016. Its second, third, and fourth seasons followed in October 2017,
+          July 2019, and May and July 2022, respectively. In February 2022, the
+          series was renewed for a fifth and final season.
+        </Text>
+        <Text>{email}</Text>
+        <Button
+          color="red"
+          onPress={() => {
+            Linking.openURL('https://www.netflix.com/in/').catch(err =>
+              console.error('Error', err),
+            );
+          }}
+          title="Watch Now"
+        />
       </View>
     </View>
   );
@@ -45,12 +68,15 @@ const styles = StyleSheet.create({
   },
   textStyle2: {
     fontSize: 30,
-    padding: 20,
+    padding: 15,
     fontFamily: 'courier',
-    // fontWeight: 'bold',
+    fontWeight: 'bold',
   },
   imageStyle: {
     height: 50,
     width: 50,
+  },
+  textStyle3: {
+    padding: 25,
   },
 });
