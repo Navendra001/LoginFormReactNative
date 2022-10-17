@@ -12,7 +12,7 @@ const Drawer = createDrawerNavigator();
 const DrawerNavigator = () => {
   return (
     <NavigationContainer>
-      <Drawer.Navigator initialRouteName="UseState">
+      <Drawer.Navigator initialRouteName="UseContext">
         <Drawer.Screen name="Home" component={Home} />
         <Drawer.Screen name="UseState" component={UseState} />
         <Drawer.Screen name="UseEffect" component={UseEffect} />

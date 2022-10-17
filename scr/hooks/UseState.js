@@ -11,9 +11,11 @@ const UseState = () => {
         onPress={() => setCount(count + 1)}
         style={styles.buttonStyle}
       />
+      <View style={{marginBottom: 10}} />
       <Button
         title="Reset Value"
         onPress={() => setCount(0)}
+        color={'red'}
         style={styles.buttonStyle}
       />
     </View>
@@ -25,13 +27,13 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   buttonStyle: {
-    margin: 20,
-    padding: 20,
+    marginBottom: 20,
   },
   viewStyle: {
     flex: 1,
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     marginHorizontal: 16,
+    // paddingVertical: 16,
   },
 });
 export default UseState;
