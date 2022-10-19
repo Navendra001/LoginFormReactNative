@@ -14,7 +14,8 @@ const UseDeferredValue = () => {
       <TextInput
         style={styles.input1}
         onChangeText={value => {
-          setInput(value), handleChanges(value);
+          setInput(value);
+          handleChanges(value);
         }}
       />
       <ScrollView>

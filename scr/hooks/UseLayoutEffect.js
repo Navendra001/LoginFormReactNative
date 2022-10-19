@@ -1,5 +1,6 @@
+/* eslint-disable react-native/no-inline-styles */
 import {View, Text, Button} from 'react-native';
-import React, {useState, useEffect, useLayoutEffect} from 'react';
+import React, {useState, useLayoutEffect} from 'react';
 
 const UseLayoutEffect = () => {
   const [count, setCount] = useState(0);

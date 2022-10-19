@@ -1,5 +1,6 @@
+/* eslint-disable react-native/no-inline-styles */
 import {View, Text, Button} from 'react-native';
-import React, {useMemo, useState, useEffect, useReducer} from 'react';
+import React, {useReducer} from 'react';
 
 const ACTION = {
   INC: 'inc',
@@ -33,7 +34,6 @@ const UseReducer = () => {
           title="Increment value"
           onPress={() => dispatch({type: ACTION.INC})}
         />
-        {/* eslint-disable-next-line react-native/no-inline-styles */}
         <View style={{marginBottom: 10}} />
         <Button
           title="Decrement Value"

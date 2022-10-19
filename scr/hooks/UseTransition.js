@@ -1,10 +1,11 @@
-import {View, Text, TextInput, Button, StyleSheet} from 'react-native';
-import React, {useState, useEffect, useTransition} from 'react';
+/* eslint-disable react-native/no-inline-styles */
+import {View, Text, TextInput, StyleSheet} from 'react-native';
+import React, {useState, useTransition} from 'react';
 import {ScrollView} from 'react-native-gesture-handler';
 
 const UseTransition = () => {
   const [isPending, startTransition] = useTransition();
-  const [input, setInput] = useState('');
+  const [, setInput] = useState('');
   const [list, setList] = useState([]);
   const TempSize = 1000;
   function handleChanges(e) {
@@ -23,7 +24,8 @@ const UseTransition = () => {
       <TextInput
         style={styles.input1}
         onChangeText={value => {
-          setInput(value), handleChanges(value);
+          setInput(value);
+          handleChanges(value);
         }}
       />
       <ScrollView>
