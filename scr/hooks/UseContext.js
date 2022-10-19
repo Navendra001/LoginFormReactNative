@@ -8,8 +8,8 @@ const UseContext = () => {
   return (
     <View>
       <Text>UseContext</Text>
-      <FirstName.Provider value={'Kajal'}>
-        <LastName.Provider value={'Bansal'}>
+      <FirstName.Provider value={'Vijay'}>
+        <LastName.Provider value={'Kumar'}>
           <FirstScreen />
         </LastName.Provider>
       </FirstName.Provider>

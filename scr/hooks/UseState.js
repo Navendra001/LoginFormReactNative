@@ -11,6 +11,7 @@ const UseState = () => {
         onPress={() => setCount(count + 1)}
         style={styles.buttonStyle}
       />
+      {/* eslint-disable-next-line react-native/no-inline-styles */}
       <View style={{marginBottom: 10}} />
       <Button
         title="Reset Value"
