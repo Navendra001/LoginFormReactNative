@@ -17,20 +17,18 @@ const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = () => {
   return (
-    <NavigationContainer>
-      <Drawer.Navigator initialRouteName="UseState">
-        <Drawer.Screen name="Home" component={Home} />
-        <Drawer.Screen name="UseState" component={UseState} />
-        <Drawer.Screen name="UseEffect" component={UseEffect} />
-        <Drawer.Screen name="UseContext" component={UseContext} />
-        <Drawer.Screen name="UseMemo" component={UseMemo} />
-        <Drawer.Screen name="UseReducer" component={UseReducer} />
-        <Drawer.Screen name="UseLayoutEffect" component={UseLayoutEffect} />
-        <Drawer.Screen name="UseCallBack" component={UseCallBack} />
-        <Drawer.Screen name="UseTransition" component={UseTransition} />
-        <Drawer.Screen name="UseDeferredValue" component={UseDeferredValue} />
-      </Drawer.Navigator>
-    </NavigationContainer>
+    <Drawer.Navigator initialRouteName="Home">
+      <Drawer.Screen name="Home" component={Home} />
+      <Drawer.Screen name="UseState" component={UseState} />
+      <Drawer.Screen name="UseEffect" component={UseEffect} />
+      <Drawer.Screen name="UseContext" component={UseContext} />
+      <Drawer.Screen name="UseMemo" component={UseMemo} />
+      <Drawer.Screen name="UseReducer" component={UseReducer} />
+      <Drawer.Screen name="UseLayoutEffect" component={UseLayoutEffect} />
+      <Drawer.Screen name="UseCallBack" component={UseCallBack} />
+      <Drawer.Screen name="UseTransition" component={UseTransition} />
+      <Drawer.Screen name="UseDeferredValue" component={UseDeferredValue} />
+    </Drawer.Navigator>
   );
 };
 
