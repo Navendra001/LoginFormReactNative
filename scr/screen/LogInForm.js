@@ -9,8 +9,31 @@ import {
 } from 'react-native';
 import {Formik} from 'formik';
 import * as yup from 'yup';
+import axios from 'axios';
 
 const LogInForm = ({navigation}) => {
+  const validUser = async ({email, password} = {}) => {
+    try {
+      const payload = {
+        id: 'myLoginUser',
+        paramValue: {
+          email: email,
+          password: password,
+        },
+      };
+      const response = await axios.post('http://192.168.3.230:5000/invoke', {
+        ...payload,
+      });
+      if (response.data.response.result.token) {
+        navigation.navigate('MyDrawer');
+      }
+      console.log('====================================');
+      console.log(response.data);
+      console.log('====================================');
+    } catch (err) {
+      console.log('>>>>>err', err.response.data.response.error.message);
+    }
+  };
   const loginValidation = yup.object().shape({
     email: yup
       .string()
@@ -21,6 +44,9 @@ const LogInForm = ({navigation}) => {
       .min(5, ({min}) => `Password must be at least ${min} characters`)
       .required('Password is required'),
   });
+  // useEffect(() => {
+  //   validUser({email: 'kk@gmail.com', password: 'qwert12345'});
+  // }, []);
 
   return (
     <SafeAreaView>
@@ -32,7 +58,7 @@ const LogInForm = ({navigation}) => {
           onSubmit={(values, {resetForm}) => {
             console.log(values);
             resetForm({values: ''});
-            navigation.navigate('Card', values);
+            navigation.navigate('MyDrawer', values);
           }}>
           {({
             handleChange,
@@ -72,7 +98,9 @@ const LogInForm = ({navigation}) => {
               )}
               <Button
                 color="red"
-                onPress={handleSubmit}
+                onPress={() => {
+                  validUser({email: values.email, password: values.password});
+                }}
                 title="Log In"
                 disabled={!isValid}
               />
